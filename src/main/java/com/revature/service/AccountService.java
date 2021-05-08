@@ -4,51 +4,37 @@ import java.util.List;
 
 import com.revature.daos.AccountDAO;
 import com.revature.daos.AccountDAOImpl;
+import com.revature.daos.UserDAOImpl;
 import com.revature.models.Account;
 
 import com.revature.models.User;
 
 public class AccountService {
 	
+	private AccountDAOImpl accDao = new AccountDAOImpl();
 	
-	
-	private AccountDAO accDao = new AccountDAOImpl();
-	
-	public List<Account> getAllAccounts(){
-	
-	List<Account> accounts = accDao.findAllAccounts();
-	//business logic 
+	private UserDAOImpl uDao = new UserDAOImpl();
 
-		return accounts;
-	}	
-	
-
-
-	//public List<Account> findAllAccounts() {
-	//	return accDao.findAllAccounts();
-	//}
-
-
-	
-
-	
-	
-	//DO NOT LEAVE THIS HERE******** YOU HAVE BEEN WARNED	
-	//Accounts must be able to withdrawal, deposit, and transfer using balance 
-	//	public void deposit(double amount) {
-	//		this.balance += amount;
-	//	}
+	public List<Account> findAllAccounts() {
 		
-	//	public void withdraw(double amount) {
-	//		this.balance -= amount;
-	//	}
 		
-	//	public void transfer(double amount, Account a) {
-	//		this.withdraw(amount);
-	//		a.deposit(amount);
-	//	}
-		
+		return accDao.findAllAccounts();
+	}
+
+	public Account findByAccountId(int id) {
+		return accDao.findByAccountId(id);
+	}
+
+	public List<Account> findByUser(Account a, User u) {
+		return accDao.findByUser(a, u);
+	}
+
+	public boolean addAccount(Account a) {
+		return accDao.addAccount(a);
+	}
+
 	
+
 	
 
 }

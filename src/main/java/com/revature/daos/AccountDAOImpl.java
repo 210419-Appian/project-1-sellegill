@@ -117,6 +117,8 @@ public class AccountDAOImpl implements AccountDAO {
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			
+			
+			
 			int index = 0;
 			stmt.setDouble(++index, a.getBalance());
 			stmt.setInt(++index, a.getStatus());
@@ -134,5 +136,29 @@ public class AccountDAOImpl implements AccountDAO {
 		return false;
 	}
 /*---------------------------------------------------------------------------------------------*/
+	@Override
+	public boolean deposit() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+/*-------------------------------------------------------------------------------*/	
+	@Override
+	public boolean withdrawal() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+/*-------------------------------------------------------------------------------*/	
+	@Override
+	public boolean transfer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+/*-------------------------------------------------------------------------------*/	
+	@Override
+	public List<Account> findAccountByStatus() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

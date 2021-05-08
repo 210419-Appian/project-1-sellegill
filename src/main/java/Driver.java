@@ -15,8 +15,8 @@ public class Driver {
 		
 		private static UserService uServ = new UserService();
 
-		public static void main(String[] args) {
-		List<Account> list = aServ.getAllAccounts();
+	//	public static void main(String[] args) {
+	//	List<Account> list = aServ.findAllAccounts();
 		
 				//System.out.println(list);
 	//	for(Account a: list) {
@@ -38,8 +38,8 @@ public class Driver {
 		//UserDAO
 	List<User> ulist = uServ.findAllUsers();
 	UserDAOImpl udao = new UserDAOImpl();
-	//	System.out.println(ulist);
-	//	System.out.println(udao.findById(4)); it works!!
+	//	System.out.println(ulist); works
+	//	System.out.println(udao.findById(4)); Works
 	//	System.out.println(udao.findUserByUsername("tammytea")); it works!!
 	
 //	  for(User u: ulist) {
@@ -51,6 +51,6 @@ public class Driver {
 		
 /*--------------------------------------------------------------------------------*/
 
-		}
+	//	}
 
 //}

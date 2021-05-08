@@ -25,21 +25,7 @@ public Account(int accountId, double balance, int status, int accType, int owner
 		this.owner_id = owner_id;
 	}
 
-	
-	
-	public Account(double balance, int status, int accType, int owner_id) {
-	super();
-	this.balance = balance;
-	this.status = status;
-	this.accType = accType;
-	this.owner_id = owner_id;
-}
-
-	
-
 	//getters and setters
-
-
 	public int getAccountId() {
 		return accountId;
 	}
@@ -117,9 +103,6 @@ public Account(int accountId, double balance, int status, int accType, int owner
 				+ accType + ", owner_id=" + owner_id + "]";
 	}
 
-
-	
-	
 
 	
 }

@@ -12,7 +12,7 @@ public class User {
 	private String firstName; //not null
 	private String lastName; //not null
 	private String email; //not null
-	private String roleName;
+	private int roleId;
 	
 	//no args Constructor 
 	public User() {
@@ -20,7 +20,7 @@ public class User {
 	}
 
 	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			String roleName) {
+			int roleId) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -28,7 +28,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.roleName = roleName;
+		this.roleId = roleId;
 	}
 	
   //getters and setters
@@ -80,17 +80,17 @@ public class User {
 		this.email = email;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setRoleName(int roleName) {
+		this.roleId = roleName;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, lastName, password, roleName, userId, username);
+		return Objects.hash(email, firstName, lastName, password, roleId, userId, username);
 	}
 
 	@Override
@@ -104,14 +104,14 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(roleName, other.roleName) && userId == other.userId
+				&& Objects.equals(roleId, other.roleId) && userId == other.userId
 				&& Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", roleName=" + roleName + "]";
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", roleId=" + roleId+ "]";
 	}
 
 	

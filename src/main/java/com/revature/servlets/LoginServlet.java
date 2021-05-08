@@ -10,19 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.UserDTO;
+import com.revature.service.LoginServices;
 
 public class LoginServlet extends HttpServlet{
 	
+	private LoginServices lServ = new LoginServices();
+	
+	private ObjectMapper om = new ObjectMapper();
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		UserDTO u = new UserDTO();
 		
 		u.username = request.getParameter("userId"); //connected to html
 		u.password = request.getParameter("password");
 		
-		//UserDTO shoudl pass thru service layer to make sure credentials are accurate
+		//UserDTO should pass thru service layer to make sure credentials are accurate
 		
 		RequestDispatcher rd = null;
 		PrintWriter out = response.getWriter();
@@ -33,6 +40,8 @@ public class LoginServlet extends HttpServlet{
 			HttpSession ses = request.getSession();//cookie is create here and placed in response
 			ses.setAttribute("username", u.username);//Save username in session for use later
 			
+			//Friendly Welcome
+			
 			rd = request.getRequestDispatcher("success");
 			rd.forward(request, response);
 			
@@ -41,9 +50,15 @@ public class LoginServlet extends HttpServlet{
 			rd.include(request, response);
 			
 			out.print("<span style='color:red; text-align:center'>Invalid Username/Password</span>");
+			response.setStatus(400); //Bad Request
 			
 			//resp.setStatus(200); //Tomcat will do this by default if it finds a servlet method to handle the request. 
 		}
 	}
+	//getting 405 might need to use request.getMethod(); to manually return method type (route & parse)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
+		
 
 }

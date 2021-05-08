@@ -8,14 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.revature.models.Account;
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAO {
 	
-	//Old way I thought you use to connect to db and then just use conn/stmt 
-	//instead of establishing connection in every method
 	
 //	Connection conn = null; //Connection to DB
 //	PreparedStatement stmt = null; //Protect against SQL Injection
@@ -41,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
 			u.setFirstName(rs.getString("first_name"));
 			u.setLastName(rs.getString("last_name"));
 			u.setEmail(rs.getString("email"));
-		//	u.setRoleName(rs.getInt("role_id")); its an int
+			u.setRoleName(rs.getInt("role_id")); 
 			
 			list.add(u);
 		}
@@ -73,7 +71,7 @@ public class UserDAOImpl implements UserDAO {
 				u.setFirstName(rs.getString("first_name"));
 				u.setLastName(rs.getString("last_name"));
 				u.setEmail(rs.getString("email"));
-			//	u.setRoleName(rs.getInt("role_id"));
+				u.setRoleName(rs.getInt("role_id"));
 				
 				return u;
 			}
@@ -103,7 +101,7 @@ public class UserDAOImpl implements UserDAO {
 				u.setFirstName(rs.getString("first_name"));
 				u.setLastName(rs.getString("last_name"));
 				u.setEmail(rs.getString("email"));
-			//	u.setRoleName(rs.getInt("role_id"));
+				u.setRoleName(rs.getInt("role_id"));
 				
 				return u;
 			}
@@ -127,8 +125,13 @@ public class UserDAOImpl implements UserDAO {
 			stmt.setString(++index, u.getFirstName());
 			stmt.setString(++index, u.getLastName());
 			stmt.setString(++index, u.getEmail());
-		//	stmt.setInt(++index, u.getRoleName()); 
+			stmt.setInt(++index, u.getRoleId()); 
 			
+		/*	if(u.getUsername() != null) {
+				stmt.setString(++index, u.getUsername());
+			}else {
+				stmt.setString(++index, null);
+			} */
 			stmt.execute();
 			
 			return true;
@@ -154,7 +157,7 @@ public class UserDAOImpl implements UserDAO {
 			stmt.setString(++index, u.getFirstName());
 			stmt.setString(++index, u.getLastName());
 			stmt.setString(++index, u.getEmail());
-			stmt.setString(++index, u.getRoleName());
+			stmt.setInt(++index, u.getRoleId());
 			
 			stmt.execute();
 			
@@ -165,7 +168,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return false;
 	}
-/*-------------------------------------------------------------------------------*/		
+/*-------------------------------------------------------------------------------*/
 
 }
 
