@@ -37,8 +37,8 @@ public class ConnectionUtil {
  }
 	//Look up System.getenv later 
 	
-	//test connection it worked 5/1/21
-/*	
+	//test connection it worked 5/6/21
+/*
 	public static void main(String[] args) {
 		
 		try(Connection conn=ConnectionUtil.getConnection()) {

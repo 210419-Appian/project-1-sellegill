@@ -8,31 +8,29 @@ import com.revature.models.User;
 
 public class UserService {
 	
-	private UserDAO uDao = new UserDAOImpl();
+	private static UserDAO uDao = new UserDAOImpl();
 
-	public List<User> findAll() {
-		return uDao.findAll();
+	public List<User> findAllUsers() {
+		return uDao.findAllUsers();
 	}
 
 	public User findById(int userId) {
 		return uDao.findById(userId);
 	}
 
-	public User findByUsername(String username) {
-		return uDao.findByUsername(username);
+	public User findUserByUsername(String username) {
+		return uDao.findUserByUsername(username);
 	}
 
-	public int makeUser() {
-		return uDao.makeUser();
+	public boolean addUser(User u) {
+		return uDao.addUser(u);
 	}
 
-	public int update() {
-		return uDao.update();
+	public boolean updateUser(User u, int id) {
+		return uDao.updateUser(u, id);
 	}
 
-	public int delete() {
-		return uDao.delete();
-	}
+
+
 	
-
 }

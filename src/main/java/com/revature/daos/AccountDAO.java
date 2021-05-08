@@ -1,18 +1,21 @@
 package com.revature.daos;
 
 import java.util.List;
-//think of all roles admin, employee, customer
+
 import com.revature.models.Account;
+
+import com.revature.models.User;
 
 public interface AccountDAO {
 	
-	public List<Account> findAllAccounts(); 
-	public List<Account> findAccountByUserId(int userId); 
+	public List<Account> findAllAccounts(); //Find all accounts
 	
-	public int createAccount(Account account);
-	public int update(Account account);
-	public int usersAccounts(int accountId);
+	public Account findByAccountId(int id); //Find a single account
 	
-	public int deposit();
+	public List<Account> findByUser(Account a, User u); //Find by User
+	
+	public boolean addAccount(Account a); //Create 
+	
+	
 
 }

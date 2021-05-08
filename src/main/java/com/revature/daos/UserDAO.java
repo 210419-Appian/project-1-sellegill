@@ -4,25 +4,18 @@ import java.util.List;
 
 import com.revature.models.User;
 
-//use DML CRUD /DQL?
 
 public interface UserDAO {
 	
+	public List<User> findAllUsers(); //Retrieve from DB 
 	
-	public List<User> findAll(); //Retrieve from DB 
-	public User findById(int userId); //Retrieve from DB 
-	public User findByUsername(String username); //Retrieve from DB 
+	public User findById(int userId); //Find by UserId
 	
-	public int makeUser(); //Create/Insert
+	public User findUserByUsername(String username); //Find by username
 	
-	public int update(); //Update 
+	public boolean addUser(User u); 
 	
-	public int delete(); //Delete
-	
-	
-	
-	
-	
+	public boolean updateUser(User u, int id); //Update 
 	
 	
 

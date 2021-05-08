@@ -1,50 +1,23 @@
 package com.revature.controller;
+import java.io.IOException;
 
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
-import com.revature.models.Account;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.service.AccountService;
 
 public class AccountController {
+
+	private AccountService aServ = new AccountService();
 	
-	private final AccountService aServ = new AccountService();
-
-	public int createAccount(Account account) {
-		return aServ.createAccount(account);
-	}
-
-	public int deposit() {
-		return aServ.deposit();
-	}
-
-	public boolean equals(Object arg0) {
-		return aServ.equals(arg0);
-	}
-
-	public List<Account> findAllAccounts() {
-		return aServ.findAllAccounts();
-	}
-
-	public List<Account> findAccountByUserId(int userId) {
-		return aServ.findAccountByUserId(userId);
-	}
-
-	public int hashCode() {
-		return aServ.hashCode();
-	}
-
-	public String toString() {
-		return aServ.toString();
-	}
-
-	public int update(Account account) {
-		return aServ.update(account);
-	}
-
-	public int usersAccounts(int accountId) {
-		return aServ.usersAccounts(accountId);
+	private ObjectMapper om = new ObjectMapper();
+	
+	public void getAccount(HttpServletResponse response, String string) throws IOException {
+		
+		
 	}
 	
 	
-
+	
+	
 }

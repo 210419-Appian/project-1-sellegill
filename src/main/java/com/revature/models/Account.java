@@ -2,29 +2,44 @@ package com.revature.models;
 
 import java.util.Objects;
 
-//The Account model is used to represent a single account for a user
-
-public class Account {
+public class Account{
 	private int accountId; //primary key
 	private double balance; //not null
-	private AccountStatus status;
-	private AccountType type;
+	private int status;
+	private int accType;
+	private int owner_id;
 	
-	//no args
+	
 	public Account() {
 		super();
+
 	}
 
-//default
-	public Account(int accountId, double balance, AccountStatus status, AccountType type) {
+	
+public Account(int accountId, double balance, int status, int accType, int owner_id) {
 		super();
 		this.accountId = accountId;
 		this.balance = balance;
 		this.status = status;
-		this.type = type;
+		this.accType = accType;
+		this.owner_id = owner_id;
 	}
 
-//getters and setters
+	
+	
+	public Account(double balance, int status, int accType, int owner_id) {
+	super();
+	this.balance = balance;
+	this.status = status;
+	this.accType = accType;
+	this.owner_id = owner_id;
+}
+
+	
+
+	//getters and setters
+
+
 	public int getAccountId() {
 		return accountId;
 	}
@@ -45,29 +60,41 @@ public class Account {
 	}
 
 
-	public AccountStatus getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(AccountStatus status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
 
-	public AccountType getType() {
-		return type;
+	public int getAccType() {
+		return accType;
 	}
 
 
-	public void setType(AccountType type) {
-		this.type = type;
+	public void setAccType(int accType) {
+		this.accType = accType;
 	}
+
+
+	public int getOwner_id() {
+		return owner_id;
+	}
+
+
+	public void setOwner_id(int owner_id) {
+		this.owner_id = owner_id;
+	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountId, balance, status, type);
+		return Objects.hash(accType, accountId, balance, owner_id, status);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -78,16 +105,19 @@ public class Account {
 			return false;
 		}
 		Account other = (Account) obj;
-		return accountId == other.accountId
+		return accType == other.accType && accountId == other.accountId
 				&& Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance)
-				&& Objects.equals(status, other.status) && Objects.equals(type, other.type);
+				&& owner_id == other.owner_id && status == other.status;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + ", type=" + type
-				+ "]";
+		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + ", accType="
+				+ accType + ", owner_id=" + owner_id + "]";
 	}
+
+
 	
 	
 
