@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.revature.daos.UserDAO;
 import com.revature.daos.UserDAOImpl;
+import com.revature.models.Account;
 import com.revature.models.User;
 
 public class UserService {
 	
+//	private static AccountDAO aDao = new AccountDAOImpl();
 	private static UserDAO uDao = new UserDAOImpl();
 
 	public List<User> findAllUsers() {
@@ -29,7 +31,11 @@ public class UserService {
 	public boolean updateUser(User u, int id) {
 		return uDao.updateUser(u, id);
 	}
-
+//if statement to specifiy type
+	public boolean registerAccount(User u, Account a) {
+		
+		return uDao.registerAccount(u, a);
+	}
 
 
 	

@@ -142,6 +142,7 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 /*-------------------------------------------------------------------------------*/	
+	//ints and booleans don't mix
 	@Override
 	public boolean updateUser(User u, int id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
@@ -169,6 +170,31 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 /*-------------------------------------------------------------------------------*/
+	@Override
+	public boolean registerAccount(User u, Account a) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+			String sql="INSERT INTO account(balance, account_status_id, account_type_id, owner_id)"
+					+ "VALUES(?,?,?,?)";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			int index = 0;
+			stmt.setDouble(++index, a.getBalance());
+			stmt.setInt(++index, a.getStatus());
+			stmt.setInt(++index, a.getAccType());
+			stmt.setInt(++index, a.getOwner_id());
+			
+			stmt.execute();
+			
+			return true;
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }
 

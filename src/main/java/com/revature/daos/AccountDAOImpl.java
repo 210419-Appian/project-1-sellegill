@@ -141,14 +141,16 @@ public class AccountDAOImpl implements AccountDAO {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "UPDATE account SET balance = ? WHERE account_id = ?;";
 			
+			//You have to make a new reference variable!!!!
+			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			
-			int accountId = a.getAccountId();
-			double balance = a.getBalance() + amount;
+			int accountID = a.getAccountId();
+			double newAmount = a.getBalance() + amount;
 			
 			
-			stmt.setInt(1, accountId);
-			stmt.setDouble(2, balance);
+			stmt.setInt(1, accountID);
+			stmt.setDouble(2, newAmount);
 			
 			stmt.execute();
 			
@@ -165,6 +167,10 @@ public class AccountDAOImpl implements AccountDAO {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			
 			String sql="UPDATE account SET balance = ? WHERE account_id = ?;";
+			
+			//You have to make a new reference variable!!!!
+			int accountID = a.getAccountId();
+			double newAmount = a.getBalance();
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			//use different keywords
@@ -187,16 +193,31 @@ public class AccountDAOImpl implements AccountDAO {
 		
 		try(Connection conn = ConnectionUtil.getConnection()){
 			
-			String sql ="BEGIN;" + "UPDATE account SET balance = ? WHERE account_id =?;";//Commit?
+			//You have to make a new reference variable!!!!
+			
+			int sourceAccountID = sourceAccountId.getAccountId(); //starting point for transfer
+			double sourceAmount = sourceAccountId.getBalance() - amount; //subtract from Starting point balance
+			int targetAccountID = targetAccountId.getAccountId(); //destination point for transfer
+			double targetAmount = targetAccountId.getBalance() + amount; //Adding $ to balance
+			
+			String sql ="BEGIN;" + "UPDATE account SET balance = ? WHERE account_id =?;" 
+			+ "UPDATE account SET balance = ? WHERE account_id = ?;" +"COMMIT;";
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			
 			ResultSet rs = stmt.executeQuery();
-			//
-		/*	stmt.setDouble(1, amount);
-			stmt.setInt(2, sourceAccountId);
-			stmt.setDouble(3, amount);
-			*/
+			stmt.setDouble(1, sourceAmount);
+			stmt.setInt(2, sourceAccountID);
+			stmt.setDouble(3, targetAmount);
+			stmt.setInt(4, targetAccountID);
+			
+		//	stmt.setInt(sourceAccountID, targetAccountID);
+		//	stmt.setDouble(targetAccountID, targetAmount);
+			
+			stmt.execute();
+			
+			return true;
+			
 		}catch(SQLException e) {
 			
 		}
