@@ -16,12 +16,12 @@ public interface AccountDAO {
 	
 	public boolean addAccount(Account a); //Create 
 	
-	public boolean deposit();
+	public boolean deposit(Account a, double amount);
 	
-	public boolean withdrawal();
+	public boolean withdrawal(Account a, double amount);
 	
-	public boolean transfer();
+	public boolean transfer(Account sourceAccountId, Account targetAccountId, double amount );
 	
-	List<Account> findAccountByStatus();
+	List<Account> findAccountByStatus(int status);
 
 }

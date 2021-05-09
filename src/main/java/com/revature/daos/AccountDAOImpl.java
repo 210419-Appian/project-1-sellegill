@@ -137,26 +137,103 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 /*---------------------------------------------------------------------------------------------*/
 	@Override
-	public boolean deposit() {
-		// TODO Auto-generated method stub
+	public boolean deposit(Account a, double amount) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "UPDATE account SET balance = ? WHERE account_id = ?;";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			int accountId = a.getAccountId();
+			double balance = a.getBalance() + amount;
+			
+			
+			stmt.setInt(1, accountId);
+			stmt.setDouble(2, balance);
+			
+			stmt.execute();
+			
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 /*-------------------------------------------------------------------------------*/	
 	@Override
-	public boolean withdrawal() {
-		// TODO Auto-generated method stub
+	public boolean withdrawal(Account a, double amount) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+			String sql="UPDATE account SET balance = ? WHERE account_id = ?;";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			//use different keywords
+			int accountId = a.getAccountId(); 
+			double balance = a.getBalance() - amount ; //-= 
+			
+			stmt.execute();
+			
+			return true;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+/*-------------------------------------------------------------------------------*/	
+	//USE TCL BEGIN COMMIT
+	@Override
+	public boolean transfer(Account sourceAccountId, Account targetAccountId, double amount) {
+		
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+			String sql ="BEGIN;" + "UPDATE account SET balance = ? WHERE account_id =?;";//Commit?
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			//
+		/*	stmt.setDouble(1, amount);
+			stmt.setInt(2, sourceAccountId);
+			stmt.setDouble(3, amount);
+			*/
+		}catch(SQLException e) {
+			
+		}
 		return false;
 	}
 /*-------------------------------------------------------------------------------*/	
 	@Override
-	public boolean transfer() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-/*-------------------------------------------------------------------------------*/	
-	@Override
-	public List<Account> findAccountByStatus() {
-		// TODO Auto-generated method stub
+	public List<Account> findAccountByStatus(int status) {
+		List <Account> list = new ArrayList<>();
+		
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+		   String sql = "SELECT * FROM account WHERE account_status_id =?;";	
+		
+	       PreparedStatement stmt = conn.prepareStatement(sql);
+	       
+	       
+	       stmt.setInt(1, status);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Account a = new Account();
+				
+				a.setAccountId(rs.getInt("account_id"));
+				a.setBalance(rs.getDouble("balance"));
+				a.setStatus(rs.getInt("account_status_id"));
+				a.setAccType(rs.getInt("account_type_id"));
+				a.setOwner_id(rs.getInt("owner_id"));
+				
+				list.add(a);
+			}
+			return list;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
