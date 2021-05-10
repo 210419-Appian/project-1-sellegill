@@ -12,6 +12,8 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  
+  
 <servlet>
   <description></description>
   <display-name>UserServlet</display-name>
@@ -24,16 +26,20 @@
   <url-pattern>/user</url-pattern>
   </servlet-mapping>
 
-<servlet>
-  <description></description>
-  <display-name>HelloServlet</display-name>
-  <servlet-name>HelloServlet</servlet-name>
-  <servlet-class>com.revature.servlets.HelloServlet</servlet-class>
+ <servlet>
+  	<servlet-name>FrontControllerServlet</servlet-name>
+  	<servlet-class>com.revature.web.FrontControllerServlet</servlet-class>
+  	<!-- Set Servlet Config data -->
+  	<init-param>
+  		<param-name>BaseURL</param-name>
+  		<param-value>/FrontController/</param-value>
+  	</init-param>
   </servlet>
   
   <servlet-mapping>
-  <servlet-name>HelloServlet</servlet-name>
-  <url-pattern>/hello</url-pattern>
+  	<servlet-name>FrontControllerServlet</servlet-name>
+  	<!-- We want everything to go this single servlet so we map to the base URL -->
+  	<url-pattern>/</url-pattern>
   </servlet-mapping>
   
 <servlet>

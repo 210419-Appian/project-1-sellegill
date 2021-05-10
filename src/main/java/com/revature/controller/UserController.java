@@ -32,4 +32,88 @@ public class UserController {
 		pw.print(json);
 		response.setStatus(200); //Success!
 	}
+	
+	public void getUser(HttpServletResponse response, int id) throws IOException {
+		
+		User u = uServ.findById(id);
+		
+		String json = om.writeValueAsString(u);
+		System.out.println(json);
+		
+		PrintWriter pw = response.getWriter();
+		
+		pw.print(json);
+		response.setStatus(200); //Success!
+	}
+	
+	public void addUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		BufferedReader br = request.getReader();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		String line = br.readLine();
+		
+		while(line != null) {
+			sb.append(line);
+			line = br.readLine();
+		}
+		
+		String body = new String(sb);
+		
+		User u = om.readValue(body, User.class);
+		
+		if(uServ.addUser(u)) {
+			response.setStatus(201);// Created
+		} else {
+			response.setStatus(406); //Not Acceptable
+		}
+	}
+public void putUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		BufferedReader br = request.getReader();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		String line = br.readLine();
+		
+		while(line != null) {
+			sb.append(line);
+			line = br.readLine();
+		}
+		
+		String body = new String(sb);
+		
+		User u = om.readValue(body, User.class);
+		
+		if(uServ.updateUser(u, 0)) {
+			response.setStatus(201);// Created
+		} else {
+			response.setStatus(400); //Bad Request
+		}
+	}
+
+public void patchUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	
+	BufferedReader br = request.getReader();
+	
+	StringBuilder sb = new StringBuilder();
+	
+	String line = br.readLine();
+	
+	while(line != null) {
+		sb.append(line);
+		line = br.readLine();
+	}
+	
+	String body = new String(sb);
+	
+	User u = om.readValue(body, User.class);
+	
+	if(uServ.updateUser(u, 0)) {
+		response.setStatus(200);// Success
+	} else {
+		response.setStatus(400); //Bad Request
+	}
+}
 }
