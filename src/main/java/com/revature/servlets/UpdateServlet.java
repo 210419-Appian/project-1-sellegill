@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.UserDTO;
 
 public class UpdateServlet extends HttpServlet {
-	/*	
+		
 	private ObjectMapper om = new ObjectMapper();
 	
 	@Override
@@ -45,6 +45,5 @@ public class UpdateServlet extends HttpServlet {
 		}
 	}
 }	
-*/
 
-}
+

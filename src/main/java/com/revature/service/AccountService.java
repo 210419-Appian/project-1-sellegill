@@ -1,11 +1,13 @@
 package com.revature.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.daos.AccountDAO;
 import com.revature.daos.AccountDAOImpl;
 import com.revature.daos.UserDAOImpl;
 import com.revature.exceptions.InsufficientFunds;
+import com.revature.exceptions.Security;
 import com.revature.models.Account;
 
 import com.revature.models.User;
@@ -17,9 +19,16 @@ public class AccountService {
 	private UserDAOImpl uDao = new UserDAOImpl();
 	
 //if stat w/ Sercurity exception for Admin or EMployees
-	public List<Account> findAllAccounts() {
+	public List<Account> findAllAccounts(User u) {
 		
-		return accDao.findAllAccounts();
+	//	if(u.getRoleId()== 1 || u.getRoleId() == 2) {   //&& doesn't work right
+	
+			return accDao.findAllAccounts();
+	//	} else {
+	//		throw new Security("Permission Denied");  //why not worrrrkkkkkkkkkkkk
+	//	}
+	
+	//	return null;
 	}
 	//if stat w/ Sercurity exception for Admin or EMployees
 	public Account findByAccountId(int id) {
@@ -39,22 +48,10 @@ public class AccountService {
 		return accDao.deposit(a, amount);
 	}
 
-/*	public boolean equals(Object obj) {
-		return accDao.equals(obj);
-	}
-*/
 	public List<Account> findAccountByStatus(int status) {
 		return accDao.findAccountByStatus(status);
 	}
-/*
-	public int hashCode() {
-		return accDao.hashCode();
-	}
 
-	public String toString() {
-		return accDao.toString();
-	}
-*/
 	public boolean withdrawal(Account a, double amount) throws InsufficientFunds {
 		if(a.getBalance() < amount) {
 			throw new InsufficientFunds("Transaction was not completed due to insufficient funds ");

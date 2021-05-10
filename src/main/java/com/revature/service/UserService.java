@@ -10,7 +10,7 @@ import com.revature.models.User;
 public class UserService {
 	
 //	private static AccountDAO aDao = new AccountDAOImpl();
-	private static UserDAO uDao = new UserDAOImpl();
+	private static UserDAOImpl uDao = new UserDAOImpl();
 
 	public List<User> findAllUsers() {
 		return uDao.findAllUsers();

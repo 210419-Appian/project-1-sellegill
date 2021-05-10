@@ -15,7 +15,7 @@ public class Driver {
 		
 		private static UserService uServ = new UserService();
 
-		public static void main(String[] args) {
+	//	public static void main(String[] args) {
 	//	List<Account> list = aServ.findAllAccounts();
 			
 		
@@ -27,7 +27,7 @@ public class Driver {
 		
 /*--------------------------------------------------------------------------------*/	
 		//AccountDAO
-		AccountDAOImpl adao = new AccountDAOImpl();
+	//  	AccountDAOImpl adao = new AccountDAOImpl();
 	//	System.out.println(adao.findAccountByStatus(1));// It works 
 	//	System.out.println(adao.findByAccountId(2)); //It works
 		
@@ -41,7 +41,7 @@ public class Driver {
 	UserDAOImpl udao = new UserDAOImpl();
 	//	System.out.println(ulist); works
 	//	System.out.println(udao.findById(4)); Works
-	//	System.out.println(udao.findUserByUsername("tammytea")); it works!!
+//		System.out.println(udao.findUserByUsername("tammytea")); //it works!!
 	
 //	  for(User u: ulist) {
 //			System.out.println(ulist);
@@ -54,4 +54,4 @@ public class Driver {
 
 	//	}
 
-}
+//}

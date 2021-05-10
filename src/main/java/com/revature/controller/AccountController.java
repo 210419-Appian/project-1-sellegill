@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.Account;
 import com.revature.service.AccountService;
 
 public class AccountController {
@@ -12,8 +13,9 @@ public class AccountController {
 	
 	private ObjectMapper om = new ObjectMapper();
 	
-	public void getAccount(HttpServletResponse response, String string) throws IOException {
+	public void getAllAccount(HttpServletResponse response, String string) throws IOException {
 		
+				
 		
 	}
 	

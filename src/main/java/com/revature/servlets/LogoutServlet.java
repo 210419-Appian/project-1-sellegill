@@ -14,15 +14,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class LogoutServlet extends HttpServlet {
 	
 	private ObjectMapper om = new ObjectMapper();
-	
+	//bad practice but Im going for it 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//	response.setContentType("text/html");
 		HttpSession ses = request.getSession(false);
 		
 		PrintWriter out = response.getWriter();
 		if(ses != null) {
-			out.print("You are logged out. Thanks for stopping by!");
+			out.print("<h1>You are logged out. Thanks for stopping by!</h1>");
 			response.setStatus(200); //OK
 			ses.invalidate();
 		} else {
@@ -31,7 +31,7 @@ public class LogoutServlet extends HttpServlet {
 		response.setStatus(401);//unauthorized maybe 400 better?
 		}
 	}
-	
+	//Redirect to Login page 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
